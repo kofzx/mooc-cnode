@@ -1,6 +1,9 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
+// 按需引入
+import "taro-ui/dist/style/components/drawer.scss"
+import "taro-ui/dist/style/components/list.scss"
 
 import Index from './pages/index'
 
