@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Text, Button } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { getTopicList } from "../../actions/topiclist"
+import { getTopicList, getNextList } from "../../actions/topiclist"
 import Topic from './topic'
 
 @connect(function (store) {
@@ -13,6 +13,9 @@ import Topic from './topic'
     return {
         getTopicList(params) {
             dispatch(getTopicList(params));
+        },
+        getNextList(params) {
+            dispatch(getNextList(params));
         }
     }
 })
@@ -26,11 +29,20 @@ class TopicList extends Component {
         });
     }
 
+    onScrollToLower () {
+        let { page, limit, currentCata } = this.props;
+        this.props.getNextList && this.props.getNextList({
+            page: page + 1,
+            limit,
+            tab: currentCata.key
+        });
+    }
+
     render () {
         let { list } = this.props;
         return (
-            <ScrollView>{
-                list.map(item => <Topic item={item} />)
+            <ScrollView scrollY={true} onScrollToLower={this.onScrollToLower.bind(this)} style={{ height: '650PX' }}>{
+                list.map(item => <Topic item={item} key={item.id} />)
             }</ScrollView>
         )
     }

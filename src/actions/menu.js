@@ -1,3 +1,5 @@
+import { getTopicList } from './topiclist'
+
 export function showDrawer() {
     return dispatch => {
         dispatch({type: 'showDrawer'})
@@ -11,5 +13,6 @@ export function hideDrawer() {
 export function changeCata(cata) {
     return dispatch => {
         dispatch({type: 'changeCata', currentCata: cata});
+        dispatch(getTopicList({page: 1, limit: 20, tab: cata.key}));
     }
 }

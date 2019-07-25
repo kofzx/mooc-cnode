@@ -30,10 +30,12 @@ class Menu extends Component {
     getItems(cataData) {
         return cataData.map(item => item.value);
     }
-    clickData(index) {
-        let { cataData } = this.props;
+    clickCata(index) {
+        let { cataData, currentCata } = this.props;
         let clickCata = cataData[index];
-        this.props.changeCata && this.props.changeCata(clickCata);
+        if (clickCata.key !== currentCata.key) {
+            this.props.changeCata && this.props.changeCata(clickCata);
+        }
     }
     render () {
         let { showDrawer, cataData } = this.props;
@@ -41,7 +43,7 @@ class Menu extends Component {
         return (
             <View className='topiclist-menu'>
                 <View style='position: absolute'>
-                    <AtDrawer show={showDrawer} items={items} onItemClick={this.clickData.bind(this)} onClose={this.closeDrawer.bind(this)} />
+                    <AtDrawer show={showDrawer} items={items} onItemClick={this.clickCata.bind(this)} onClose={this.closeDrawer.bind(this)} />
                 </View>
                 <Image className='image' src={require('../../assets/images/menu.png')} onClick={this.showDrawer.bind(this)} />
                 <Text>{this.props.currentCata ? this.props.currentCata.value : ''}</Text>
