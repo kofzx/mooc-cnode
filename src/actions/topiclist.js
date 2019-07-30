@@ -23,3 +23,13 @@ export function getNextList(params) {
         }
     }
 }
+export function getTopicInfo(params) {
+    return async dispatch => {
+        let res = await getJSON(api.getTopicInfo + params.id, params);
+        if (res && res.data && res.data.success) {
+            dispatch({type: 'getTopicInfo', infoData: res.data.data});
+        } else {
+            console.error('请求话题详情失败！');
+        }
+    }
+}

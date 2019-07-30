@@ -5,10 +5,15 @@ import { myTimeToLocal } from '../../utils/date'
 import './topic.less'
 
 class Topic extends Component {
+    goToDetail (topic) {
+        Taro.navigateTo({
+            url: '/pages/detail/detail?topicid=' + topic.id
+        });
+    }
     render () {
         let { item } = this.props;
         return (
-            <View className='topiclist-topic'>
+            <View className='topiclist-topic' onClick={this.goToDetail.bind(this, item)}>
                 <Image className='head-img' src={item.author ? item.author.avatar_url : ''} />
                 <View className='right'>
                     <View className='topic-title'>
