@@ -3,6 +3,7 @@ import { View, Text, Button, Image } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { myTimeToLocal } from '../../utils/date'
 import './topic.less'
+import TopicList from "./topiclist";
 
 class Topic extends Component {
     goToDetail (topic) {

@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Button, RichText } from '@tarojs/components'
 import './topicinfo.less'
 import { myTimeToLocal } from '../../utils/date'
+import Topic from "../topiclist/topic";
 
 class TopicInfo extends Component {
     render () {
@@ -30,4 +31,7 @@ class TopicInfo extends Component {
         )
     }
 }
+TopicInfo.defaultProps = {
+    topicinfo: {}
+};
 export default TopicInfo;
